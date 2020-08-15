@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
 
 	all = (uint64_t)seconds * BILLION + (uint64_t)nanoseconds;
 
-	unsigned seed;
+	uint32_t seed;
 	if(argc <= 1) {
 		printf("input seed: ");
 		int how;
@@ -28,9 +28,8 @@ int main(int argc, char **argv) {
 				printf("enter a number that is not 0 or characters fr2\n");
 				return 1;
 			}
-			else {
+			else 
 				seed = how;
-			}
 		}
 		else {
 			printf("enter a number that is not 0 or characters frcoal\n");
@@ -44,9 +43,8 @@ int main(int argc, char **argv) {
 			printf("enter a number that is not 0 or letters frcoal\n");
 			return 1;
 		}
-		else {
+		else
 			seed = ok; 
-		}
 	}
 	srand(all * seed);
 	char abc[26] = "aBcDeFgHiJkLmNoPqRsTuVwXyZ";
