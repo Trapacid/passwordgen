@@ -10,7 +10,8 @@
 
 void GeneratePassword(int x, int y) {
 	
-	char data[36] = "1aB2cD3eF4gH5iJ6kL7mN8oP9qR0sTuVwXyZ";
+	//char data[36] = "1aB2cD3eF4gH5iJ6kL7mN8oP9qR0sTuVwXyZ";
+	char data[67] = "-abcdefghijklmnopqrstuvwxyz-!_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-";
 	char character[x];
 	character[y] = data[rand() % (sizeof(data) - 1)];
 	printf("%c", character[y - 1]);
@@ -27,7 +28,7 @@ int main(int argc, char **argv) {
 	seconds = spec.tv_sec;
 	nanoseconds = spec.tv_nsec;
 
-	all = (uint64_t)seconds * BILLION * (uint64_t)nanoseconds;
+	all = (uint64_t)seconds * BILLION + (uint64_t)nanoseconds;
 
 	int len;
 	uint32_t seed;
