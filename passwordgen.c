@@ -18,8 +18,6 @@ int main(int argc, char **argv) {
 	nanoseconds = spec.tv_nsec;
 
 	all = (uint64_t)seconds * BILLION + (uint64_t)nanoseconds;
-	char buffer[21] = {'\0'};
-//	printf("%"PRIu64"", all);
 
 	unsigned seed;
 	if(argc <= 1) {
