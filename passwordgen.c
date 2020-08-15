@@ -1,4 +1,4 @@
-// fixes error with clock_gttime
+// fixes error with clock_gettime
 #define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <stdlib.h>
