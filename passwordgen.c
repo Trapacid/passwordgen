@@ -1,3 +1,4 @@
+// fixes error with clock_gttime
 #define _POSIX_C_SOURCE 199309L
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,6 +7,15 @@
 #include <ctype.h>
 
 #define BILLION 1000000000L
+
+void GeneratePassword(int x, int y) {
+	
+	char data[36] = "1aB2cD3eF4gH5iJ6kL7mN8oP9qR0sTuVwXyZ";
+	char character[x];
+	character[y] = data[rand() % (sizeof(data) - 1)];
+	printf("%c", character[y - 1]);
+	return;
+}
 
 int main(int argc, char **argv) {
 	long int nanoseconds;
@@ -17,10 +27,11 @@ int main(int argc, char **argv) {
 	seconds = spec.tv_sec;
 	nanoseconds = spec.tv_nsec;
 
-	all = (uint64_t)seconds * BILLION + (uint64_t)nanoseconds;
+	all = (uint64_t)seconds * BILLION * (uint64_t)nanoseconds;
 
+	int len;
 	uint32_t seed;
-	if(argc <= 1) {
+	if(argc <= 2) {
 		printf("input seed: ");
 		int how;
 		if(scanf("%d", &how) == 1) {
@@ -35,26 +46,33 @@ int main(int argc, char **argv) {
 			printf("enter a number that is not 0 or characters frcoal\n");
 			return 1;
 		}
+
+		printf("enter length: ");
+		if(scanf("%d", &len) != 1 || len <= 3) {
+			printf("enter a number that is greater than 3 for length");
+			return 1;	
+		}
 	}
 	else {
 		int ok = atoi(argv[1]);
+		len = atoi(argv[2]);
 		if(ok == 0)
 		{
-			printf("enter a number that is not 0 or letters frcoal\n");
+			printf("enter a number that is not 0 or letters for seed\n");
 			return 1;
 		}
 		else
 			seed = ok; 
+		if(len <= 3) {
+			printf("enter a number greater than 3 for length");
+			return 1;
+		}
 	}
 	srand(all * seed);
-	char abc[26] = "aBcDeFgHiJkLmNoPqRsTuVwXyZ";
-	char letter[7];
-	int number[7];
-	for(int i = 0; i < 7; i++) {
-		letter[i] = abc[rand() % (sizeof(abc) - 1)];
-		number[i] = rand() % 9;
-		printf("%c%d", letter[i], number[i]);
-	}
 
+	for(int i = 0; i <= len; i++) {
+		GeneratePassword(len, i);
+	}
+	printf("\n");
 	return 0;
 }
