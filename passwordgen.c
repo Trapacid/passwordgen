@@ -74,6 +74,6 @@ int main(int argc, char **argv) {
 	for(int i = 0; i <= len; i++) {
 		GeneratePassword(len, i);
 	}
-	printf("\n");
+//	printf("\0");
 	return 0;
 }
