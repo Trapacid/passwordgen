@@ -9,12 +9,11 @@
 #define BILLION 1000000000L
 
 void GeneratePassword(int x, int y) {
-	
 	//char data[36] = "1aB2cD3eF4gH5iJ6kL7mN8oP9qR0sTuVwXyZ";
-	char data[67] = "-abcdefghijklmnopqrstuvwxyz-!_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-";
+	char data[66] = "abcdefghijklmnopqrstuvwxyz-!_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-";
 	char character[x];
 	character[y] = data[rand() % (sizeof(data) - 1)];
-	printf("%c", character[y - 1]);
+	printf("%c", character[y]);
 	return;
 }
 
@@ -23,7 +22,6 @@ int main(int argc, char **argv) {
 	uint64_t all;
 	time_t seconds;
 	struct timespec spec;
-	
 	clock_gettime(CLOCK_REALTIME, &spec);
 	seconds = spec.tv_sec;
 	nanoseconds = spec.tv_nsec;
@@ -40,7 +38,7 @@ int main(int argc, char **argv) {
 				printf("enter a number that is not 0 or characters fr2\n");
 				return 1;
 			}
-			else 
+			else
 				seed = how;
 		}
 		else {
@@ -51,7 +49,7 @@ int main(int argc, char **argv) {
 		printf("enter length: ");
 		if(scanf("%d", &len) != 1 || len <= 3) {
 			printf("enter a number that is greater than 3 for length");
-			return 1;	
+			return 1;
 		}
 	}
 	else {
@@ -63,17 +61,15 @@ int main(int argc, char **argv) {
 			return 1;
 		}
 		else
-			seed = ok; 
+			seed = ok;
 		if(len <= 3) {
 			printf("enter a number greater than 3 for length");
 			return 1;
 		}
 	}
 	srand(all * seed);
-
-	for(int i = 0; i <= len; i++) {
+	for(int i = 0; i < len; i++) {
 		GeneratePassword(len, i);
 	}
-//	printf("\0");
 	return 0;
 }
